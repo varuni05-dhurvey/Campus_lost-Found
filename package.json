@@ -1,0 +1,21 @@
+{
+  "name": "campus-lost-and-found-portal",
+  "version": "1.0.0",
+  "description": "Campus Lost & Found Portal - Full Stack Development Project",
+  "main": "run.js",
+  "scripts": {
+    "start": "node run.js",
+    "dev": "node run.js",
+    "seed": "node server/seed/seed.js",
+    "test": "node server/tests/api.test.js"
+  },
+  "keywords": [
+    "campus-lost-and-found",
+    "react",
+    "nodejs",
+    "express",
+    "mongodb"
+  ],
+  "author": "Varuni Dhurvey",
+  "license": "ISC"
+}
