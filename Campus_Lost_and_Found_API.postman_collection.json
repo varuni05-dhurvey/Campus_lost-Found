@@ -1,0 +1,484 @@
+{
+  "info": {
+    "name": "Campus Lost & Found Portal API",
+    "description": "Comprehensive Postman Collection for Campus Lost & Found Portal RESTful API endpoints, covering Authentication, Item Management, Claims & Recovery, and Administrator Moderation.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api",
+      "type": "string"
+    },
+    {
+      "key": "authToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "adminToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "sampleItemId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "sampleClaimId",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "0. System Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "1. Authentication",
+      "item": [
+        {
+          "name": "Admin Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.token) {",
+                  "  pm.collectionVariables.set('adminToken', json.token);",
+                  "  pm.collectionVariables.set('authToken', json.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@campus.edu\",\n  \"password\": \"AdminPass123!\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Student Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.token) {",
+                  "  pm.collectionVariables.set('authToken', json.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"rohit.sharma@college.edu\",\n  \"password\": \"StudentPass123!\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Register New Student",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Priya Patel\",\n  \"email\": \"priya.patel@college.edu\",\n  \"password\": \"PriyaPass123!\",\n  \"confirmPassword\": \"PriyaPass123!\",\n  \"department\": \"Information Technology\",\n  \"role\": \"student\",\n  \"idNumber\": \"IT-2024-019\",\n  \"phone\": \"+91 98999 11223\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User Profile (Me)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "me"]
+            }
+          }
+        },
+        {
+          "name": "Update User Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rohit Sharma Updated\",\n  \"phone\": \"+91 98111 22334\",\n  \"department\": \"Computer Science & Engineering\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "logout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Items",
+      "item": [
+        {
+          "name": "Get All Items (with search & filters)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.items && json.items.length > 0) {",
+                  "  pm.collectionVariables.set('sampleItemId', json.items[0]._id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/items?search=&reportType=&category=All&campusLocation=All&status=All&page=1&limit=12",
+              "host": ["{{baseUrl}}"],
+              "path": ["items"],
+              "query": [
+                { "key": "search", "value": "" },
+                { "key": "reportType", "value": "" },
+                { "key": "category", "value": "All" },
+                { "key": "campusLocation", "value": "All" },
+                { "key": "status", "value": "All" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "12" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Item by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/items/{{sampleItemId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["items", "{{sampleItemId}}"]
+            }
+          }
+        },
+        {
+          "name": "Create New Report (Lost/Found)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Logitech Wireless Mouse M235\",\n  \"description\": \"Lost my grey Logitech wireless USB mouse in the Computer Science Lab workstation #12.\",\n  \"category\": \"Electronics\",\n  \"reportType\": \"lost\",\n  \"dateOfIncident\": \"2026-10-22\",\n  \"campusLocation\": \"Science Block / Labs\",\n  \"locationDetails\": \"CS Lab 2, Row 3\",\n  \"identifyingDetails\": \"Missing battery cover clip\",\n  \"contactPreference\": \"email\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/items",
+              "host": ["{{baseUrl}}"],
+              "path": ["items"]
+            }
+          }
+        },
+        {
+          "name": "Update Owned Item",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locationDetails\": \"CS Lab 2, Row 3, near window\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/items/{{sampleItemId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["items", "{{sampleItemId}}"]
+            }
+          }
+        },
+        {
+          "name": "Get My Reported Items",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/items/mine",
+              "host": ["{{baseUrl}}"],
+              "path": ["items", "mine"]
+            }
+          }
+        },
+        {
+          "name": "Update Item Status (e.g. Resolved)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"resolved\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/items/{{sampleItemId}}/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["items", "{{sampleItemId}}", "status"]
+            }
+          }
+        },
+        {
+          "name": "Delete Owned Item",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/items/{{sampleItemId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["items", "{{sampleItemId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Claims",
+      "item": [
+        {
+          "name": "Submit Claim Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"itemId\": \"{{sampleItemId}}\",\n  \"message\": \"I left this behind after our engineering practical lecture!\",\n  \"identifyingEvidence\": \"Contains my gym token number #47 and handwritten formulas on inside back cover.\",\n  \"claimantContact\": \"+91 98111 22334\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/claims",
+              "host": ["{{baseUrl}}"],
+              "path": ["claims"]
+            }
+          }
+        },
+        {
+          "name": "Get My Submitted Claims",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/claims/mine",
+              "host": ["{{baseUrl}}"],
+              "path": ["claims", "mine"]
+            }
+          }
+        },
+        {
+          "name": "Get Received Claims on My Items",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.claims && json.claims.length > 0) {",
+                  "  pm.collectionVariables.set('sampleClaimId', json.claims[0]._id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/claims/received",
+              "host": ["{{baseUrl}}"],
+              "path": ["claims", "received"]
+            }
+          }
+        },
+        {
+          "name": "Approve / Reject Claim",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"approved\",\n  \"ownerFeedback\": \"Evidence verified! You can collect it from the Central Library circulation desk.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/claims/{{sampleClaimId}}/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["claims", "{{sampleClaimId}}", "status"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Administration",
+      "item": [
+        {
+          "name": "Get Admin Analytics & Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "stats"]
+            }
+          }
+        },
+        {
+          "name": "Get All Admin Items (with private details)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/items",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "items"]
+            }
+          }
+        },
+        {
+          "name": "Moderate / Flag Item",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isModerated\": true,\n  \"moderationNote\": \"Flagged for verification by Campus Security Officer\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/items/{{sampleItemId}}/moderate",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "items", "{{sampleItemId}}", "moderate"]
+            }
+          }
+        },
+        {
+          "name": "Get All Registered Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "users"]
+            }
+          }
+        },
+        {
+          "name": "Admin Delete Item",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/items/{{sampleItemId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "items", "{{sampleItemId}}"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
