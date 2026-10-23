@@ -253,3 +253,5 @@ The project includes an automated test suite (`server/tests/api.test.js`) testin
 - **[PROJECT_REPORT.md](PROJECT_REPORT.md)**: 2-page print-ready academic project report following the required 6-section structure.
 - **[VIVA_PREPARATION.md](VIVA_PREPARATION.md)**: 25+ viva interview questions and detailed answers covering React, Node, Express, MongoDB, security, and project architecture.
 - **[Campus_Lost_and_Found_API.postman_collection.json](Campus_Lost_and_Found_API.postman_collection.json)**: Ready-to-import Postman collection.
+#   C a m p u s _ l o s t - F o u n d  
+ 
