@@ -171,6 +171,9 @@ button, input, select, textarea {
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--color-primary-900);
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-decoration: none;
 }
 
 .brand-icon {

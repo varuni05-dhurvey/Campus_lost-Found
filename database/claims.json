@@ -1,0 +1,31 @@
+[
+  {
+    "_id": "6adb0b7d345da1f3f4c74f64",
+    "item": "6adb0b7d345da1f3f4c74f5c",
+    "claimant": "6adb0b7d345da1f3f4c74f52",
+    "itemOwner": "6adb0b7d345da1f3f4c74f54",
+    "message": "Hello, I think this is my wallet that slipped from my sports track pants during badminton practice!",
+    "identifyingEvidence": "Inside you will find my gym locker token #47 and a metro transit card. The brand is Titan black leather.",
+    "claimantContact": "+91 98111 22334",
+    "status": "pending",
+    "ownerFeedback": "",
+    "createdAt": "2026-10-23T07:23:41.833Z",
+    "updatedAt": "2026-10-23T07:23:41.833Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adb0b7d345da1f3f4c74f66",
+    "item": "6adb0b7d345da1f3f4c74f60",
+    "claimant": "6adb0b7d345da1f3f4c74f54",
+    "itemOwner": "6adb0b7d345da1f3f4c74f56",
+    "message": "I had my Physics simulation practical in Lab 3 and accidentally forgot my charger there.",
+    "identifyingEvidence": "It has a blue velcro cord strap and a small scratch on the 3-pin plug.",
+    "claimantContact": "ananya.verma@college.edu",
+    "status": "completed",
+    "ownerFeedback": "Verified and handed over at the faculty desk. Glad you got it back!",
+    "reviewedAt": "2026-10-22T07:23:41.834Z",
+    "createdAt": "2026-10-23T07:23:41.834Z",
+    "updatedAt": "2026-10-23T07:23:41.834Z",
+    "__v": 0
+  }
+]

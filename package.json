@@ -7,7 +7,9 @@
     "start": "node run.js",
     "dev": "node run.js",
     "seed": "node server/seed/seed.js",
-    "test": "node server/tests/api.test.js"
+    "test": "node server/tests/api.test.js",
+    "db:export": "node server/seed/exportDB.js",
+    "db:import": "node server/seed/importDB.js"
   },
   "keywords": [
     "campus-lost-and-found",

@@ -37,12 +37,7 @@ const Navbar = () => {
           <div className="brand-icon">
             <Search size={22} strokeWidth={2.5} />
           </div>
-          <div>
-            <span>Campus Lost &amp; Found</span>
-            <div style={{ fontSize: '0.7rem', fontWeight: 600, color: 'var(--color-primary-600)', letterSpacing: '0.05em' }}>
-              COLLEGE RECOVERY PORTAL
-            </div>
-          </div>
+          <span>Lost &amp; Found</span>
         </Link>
 
         {/* Navigation Links */}

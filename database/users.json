@@ -1,0 +1,54 @@
+[
+  {
+    "_id": "6adb0b7d345da1f3f4c74f50",
+    "name": "Campus Administrator",
+    "email": "admin@campus.edu",
+    "passwordHash": "$2a$10$qb6tjMkRbUo5H6prYy7Y.ewTysU0RAT9mBLuc/suOe28xoEz9Ua9i",
+    "role": "admin",
+    "department": "Campus Administration",
+    "idNumber": "ADM-2024-01",
+    "phone": "+91 98765 43210",
+    "createdAt": "2026-10-23T07:23:41.609Z",
+    "updatedAt": "2026-10-23T07:23:41.609Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adb0b7d345da1f3f4c74f52",
+    "name": "Rohit Sharma",
+    "email": "rohit.sharma@college.edu",
+    "passwordHash": "$2a$10$55H9SmADfhyXazNIUOOl6uXL1K8H87POBsOCiIwqq3uz9Zbda1Dhi",
+    "role": "student",
+    "department": "Computer Science & Engineering",
+    "idNumber": "CS-2023-042",
+    "phone": "+91 98111 22334",
+    "createdAt": "2026-10-23T07:23:41.670Z",
+    "updatedAt": "2026-10-23T07:23:41.670Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adb0b7d345da1f3f4c74f54",
+    "name": "Ananya Verma",
+    "email": "ananya.verma@college.edu",
+    "passwordHash": "$2a$10$hIwt9EOij0K8Rbb7nAdOAe7V3gkjKJSIUqAqVQqskivZ38GD8gcG.",
+    "role": "student",
+    "department": "Electronics & Communication",
+    "idNumber": "EC-2023-088",
+    "phone": "+91 98222 33445",
+    "createdAt": "2026-10-23T07:23:41.722Z",
+    "updatedAt": "2026-10-23T07:23:41.722Z",
+    "__v": 0
+  },
+  {
+    "_id": "6adb0b7d345da1f3f4c74f56",
+    "name": "Dr. Arindam Sen",
+    "email": "prof.sen@college.edu",
+    "passwordHash": "$2a$10$S704woX6rtMRvaIVXnQJWOpBR8tPKyhN1hz/NlAdzLg0y0XknlYWm",
+    "role": "faculty",
+    "department": "Department of Physics",
+    "idNumber": "FAC-PHY-12",
+    "phone": "+91 98333 44556",
+    "createdAt": "2026-10-23T07:23:41.774Z",
+    "updatedAt": "2026-10-23T07:23:41.774Z",
+    "__v": 0
+  }
+]

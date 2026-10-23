@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lost & Found - Mini-Project Report | Varuni Dhurvey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-900: #0f172a;
+      --primary-800: #1e293b;
+      --primary-700: #1e3a8a;
+      --primary-600: #2563eb;
+      --primary-100: #dbeafe;
+      --primary-50: #eff6ff;
+      --success-700: #047857;
+      --success-600: #059669;
+      --success-50: #ecfdf5;
+      --warning-700: #b45309;
+      --warning-50: #fffbeb;
+      --slate-800: #1e293b;
+      --slate-600: #475569;
+      --slate-400: #94a3b8;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --white: #ffffff;
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--slate-800);
+      background-color: #f1f5f9;
+      line-height: 1.65;
+      padding: 30px 15px;
+    }
+
+    .report-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--white);
+      padding: 50px 60px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      border: 1px solid var(--slate-200);
+    }
+
+    /* Cover Header Card */
+    .cover-card {
+      text-align: center;
+      border: 2px solid var(--primary-700);
+      border-radius: 14px;
+      padding: 40px 30px;
+      background: linear-gradient(180deg, var(--primary-50) 0%, var(--white) 100%);
+      margin-bottom: 40px;
+    }
+
+    .cover-card h1 {
+      font-family: var(--font-heading);
+      font-size: 2.1rem;
+      color: var(--primary-900);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .cover-card h2 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      color: var(--primary-700);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .cover-card .submission-text {
+      font-size: 0.92rem;
+      color: var(--slate-600);
+      font-style: italic;
+      margin-bottom: 25px;
+    }
+
+    .meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--slate-200);
+    }
+
+    .meta-table th, .meta-table td {
+      padding: 12px 14px;
+      font-size: 0.88rem;
+      text-align: center;
+      border: 1px solid var(--slate-200);
+    }
+
+    .meta-table th {
+      background: var(--primary-900);
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* Executive Badge Bar */
+    .badge-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin: 30px 0;
+    }
+
+    .badge-item {
+      background: var(--primary-50);
+      border: 1px solid var(--primary-100);
+      padding: 14px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .badge-item .val {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary-700);
+    }
+
+    .badge-item .lbl {
+      font-size: 0.78rem;
+      color: var(--slate-600);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Section Headings */
+    h2.section-title {
+      font-family: var(--font-heading);
+      color: var(--primary-900);
+      font-size: 1.45rem;
+      font-weight: 700;
+      border-bottom: 2px solid var(--primary-700);
+      padding-bottom: 8px;
+      margin: 40px 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h3.sub-title {
+      font-family: var(--font-heading);
+      color: var(--primary-800);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 22px 0 10px 0;
+    }
+
+    p {
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+      color: var(--slate-700);
+      text-align: justify;
+    }
+
+    ul, ol {
+      margin-left: 24px;
+      margin-bottom: 16px;
+      font-size: 0.94rem;
+      color: var(--slate-700);
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    /* Tables */
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 0.88rem;
+    }
+
+    table.data-table th {
+      background-color: var(--primary-700);
+      color: var(--white);
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+      border: 1px solid var(--primary-700);
+    }
+
+    table.data-table td {
+      padding: 9px 12px;
+      border: 1px solid var(--slate-200);
+      color: var(--slate-800);
+    }
+
+    table.data-table tr:nth-child(even) {
+      background-color: var(--slate-50);
+    }
+
+    /* Callouts */
+    .callout {
+      background: var(--primary-50);
+      border-left: 4px solid var(--primary-600);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+      font-size: 0.92rem;
+      color: var(--primary-900);
+    }
+
+    .callout-success {
+      background: var(--success-50);
+      border-left-color: var(--success-600);
+      color: var(--success-700);
+    }
+
+    /* Code Blocks */
+    pre {
+      background: var(--primary-900);
+      color: #38bdf8;
+      padding: 16px 20px;
+      border-radius: 8px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.84rem;
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+
+    /* Signature Box */
+    .signature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid var(--slate-200);
+    }
+
+    .sign-box {
+      font-size: 0.9rem;
+    }
+
+    .sign-line {
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--slate-400);
+    }
+
+    /* Print Formatting */
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .report-container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .page-break {
+        page-break-after: always;
+      }
+      pre {
+        border: 1px solid #cbd5e1;
+        background: #f8fafc;
+        color: #0f172a;
+      }
+      table.data-table th {
+        background: #1e3a8a !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="report-container">
+
+    <!-- Cover Page -->
+    <div class="cover-card">
+      <h1>CAMPUS LOST & FOUND PORTAL</h1>
+      <h2>A Centralized, Privacy-Preserving Web Application for University Belongings Recovery</h2>
+      <div class="submission-text">
+        A Full Stack Mini-Project Report submitted in partial fulfillment of the requirements<br/>
+        for the degree of <strong>Bachelor of Technology in Computer Science & Engineering</strong>
+      </div>
+      <p style="text-align: center; margin-bottom: 12px;"><strong>Candidate:</strong> Varuni Dhurvey</p>
+      <p style="text-align: center; color: var(--slate-600); font-size: 0.88rem;">Department of Computer Science & Engineering • Academic Year 2025–2026</p>
+
+      <table class="meta-table">
+        <tr>
+          <th>Academic Session</th>
+          <th>Course</th>
+          <th>Technology Architecture</th>
+          <th>Verification Status</th>
+        </tr>
+        <tr>
+          <td>2025 – 2026</td>
+          <td>Full Stack Web Development</td>
+          <td>MERN (MongoDB, Express, React, Node)</td>
+          <td><strong>21 / 21 Tests Passed (100%)</strong></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Executive Stat Badges -->
+    <div class="badge-bar">
+      <div class="badge-item">
+        <div class="val">21 / 21</div>
+        <div class="lbl">Automated Tests Passed</div>
+      </div>
+      <div class="badge-item">
+        <div class="val">3 Schemas</div>
+        <div class="lbl">Users • Items • Claims</div>
+      </div>
+      <div class="badge-item">
+        <div class="val">4 Roles</div>
+        <div class="lbl">Student • Faculty • Staff • Admin</div>
+      </div>
+      <div class="badge-item">
+        <div class="val">18 Endpoints</div>
+        <div class="lbl">RESTful API Architecture</div>
+      </div>
+    </div>
+
+    <!-- Student Declaration -->
+    <div class="callout">
+      <strong>Student Declaration:</strong> I hereby declare that the mini-project entitled <em>"Campus Lost & Found Portal"</em> submitted for the course <strong>Full Stack Web Development</strong> is an authentic record of original engineering work carried out by me.
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- 1. Abstract -->
+    <h2 class="section-title">1. Abstract</h2>
+    <p>
+      On modern collegiate campuses, students, faculty, and administrative staff routinely misplace personal belongings—ranging from student identity smart cards and scientific calculators to high-value laptops, wireless earphones, keys, and wallets. Traditional campus recovery relies on chaotic WhatsApp groups, physical bulletin boards, or word-of-mouth inquiries. These approaches suffer from severe communication fragmentation, zero auditability, privacy exposure, and risks of fraudulent claims.
+    </p>
+    <p>
+      The <strong>Campus Lost & Found Portal</strong> resolves these inefficiencies through an authenticated, role-based web platform. Engineered using React.js (Frontend), Node.js & Express.js (REST API Backend), and MongoDB (Database), campus members can catalog lost items, list found belongings, and claim property through a privacy-preserving verification mechanism. Identifying secrets (such as serial numbers or custom stickers) remain hidden from the public feed and are only revealed to verified owners and moderators.
+    </p>
+
+    <!-- 2. Problem Statement & Objectives -->
+    <h2 class="section-title">2. Objectives & System Architecture</h2>
+    <p>
+      The system is designed with a <strong>3-Tier Modular Client-Server Architecture</strong>:
+    </p>
+    <ul>
+      <li><strong>Presentation Tier (Frontend):</strong> React 18 single-page application bundled with Vite. Styled with a custom collegiate CSS3 design system using Flexbox, CSS Grid, and custom variables in navy and emerald.</li>
+      <li><strong>Application Tier (Backend):** Node.js and Express.js RESTful API structured into modular controllers, routes, JWT authentication middleware, and Multer file upload handlers.</li>
+      <li><strong>Data Tier (Database):</strong> MongoDB database with Mongoose schemas and compound indexes on search fields.</li>
+    </ul>
+
+    <!-- 3. Database Schema -->
+    <h2 class="section-title">3. Database Schema Design (3 Collections)</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Collection</th>
+          <th>Primary Key</th>
+          <th>Referenced Relationships</th>
+          <th>Key Fields & Privacy Protection</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>users</strong></td>
+          <td><code>_id (ObjectId)</code></td>
+          <td>Self-contained</td>
+          <td><code>name</code>, <code>email (unique)</code>, <code>passwordHash (bcrypt)</code>, <code>role</code>, <code>department</code></td>
+        </tr>
+        <tr>
+          <td><strong>items</strong></td>
+          <td><code>_id (ObjectId)</code></td>
+          <td><code>reporter ➔ users._id</code></td>
+          <td><code>title</code>, <code>category</code>, <code>campusLocation</code>, <code>identifyingDetails (select: false)</code>, <code>status</code></td>
+        </tr>
+        <tr>
+          <td><strong>claims</strong></td>
+          <td><code>_id (ObjectId)</code></td>
+          <td><code>item ➔ items._id</code><br/><code>claimant ➔ users._id</code><br/><code>itemOwner ➔ users._id</code></td>
+          <td><code>message</code>, <code>identifyingEvidence</code>, <code>claimantContact</code>, <code>status (pending / approved)</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 4. RESTful API Directory -->
+    <h2 class="section-title">4. Core RESTful API Endpoints</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Method</th>
+          <th>Endpoint</th>
+          <th>Access</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Auth</td>
+          <td><code>POST</code></td>
+          <td><code>/api/auth/register</code></td>
+          <td>Public</td>
+          <td>Register student or faculty account</td>
+        </tr>
+        <tr>
+          <td>Auth</td>
+          <td><code>POST</code></td>
+          <td><code>/api/auth/login</code></td>
+          <td>Public</td>
+          <td>Validate credentials & issue signed JWT</td>
+        </tr>
+        <tr>
+          <td>Items</td>
+          <td><code>GET</code></td>
+          <td><code>/api/items</code></td>
+          <td>Public</td>
+          <td>Browse & filter items (search, category, status)</td>
+        </tr>
+        <tr>
+          <td>Items</td>
+          <td><code>POST</code></td>
+          <td><code>/api/items</code></td>
+          <td>Private</td>
+          <td>Report lost/found item with photo upload</td>
+        </tr>
+        <tr>
+          <td>Claims</td>
+          <td><code>POST</code></td>
+          <td><code>/api/claims</code></td>
+          <td>Private</td>
+          <td>Submit claim with secret identifying evidence</td>
+        </tr>
+        <tr>
+          <td>Claims</td>
+          <td><code>PATCH</code></td>
+          <td><code>/api/claims/:id/status</code></td>
+          <td>Finder</td>
+          <td>Approve claim & auto-resolve item status</td>
+        </tr>
+        <tr>
+          <td>Admin</td>
+          <td><code>GET</code></td>
+          <td><code>/api/admin/stats</code></td>
+          <td>Admin</td>
+          <td>View recovery metrics & category analytics</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 5. Verification & Testing -->
+    <h2 class="section-title">5. Automated Testing & Verification</h2>
+    <div class="callout callout-success">
+      <strong>Test Suite Verification:</strong> 21 / 21 Integration Tests Passing (100% Pass Rate). Verified across System Health, User Authentication, Item CRUD Operations, Claim Verification Loops, and Role-Based Access Control (RBAC).
+    </div>
+
+    <pre>
+========================================================
+  Campus Lost & Found Portal - Automated API Test Suite 
+========================================================
+[PASS] GET /api/health returns 200 and healthy status
+[PASS] POST /api/auth/login admin login succeeds and returns JWT
+[PASS] POST /api/auth/register creates new student and returns JWT
+[PASS] GET /api/items returns list of active campus items
+[PASS] Owner receives private identifyingDetails (select: false)
+[PASS] Regular student accessing /api/admin/stats is blocked with 403 Forbidden
+[PASS] Recovery Rate successfully calculated (14%)
+========================================================
+  Tests Passed: 21 | Tests Failed: 0 (100% Pass Rate)
+========================================================
+    </pre>
+
+    <!-- Signatures -->
+    <div class="signature-grid">
+      <div class="sign-box">
+        <div class="sign-line">____________________________________</div>
+        <strong>Varuni Dhurvey</strong><br/>
+        <em>Student / Candidate</em><br/>
+        Department of Computer Science & Engineering
+      </div>
+      <div class="sign-box" style="text-align: right;">
+        <div class="sign-line">____________________________________</div>
+        <strong>Project Guide / Faculty Mentor</strong><br/>
+        <em>Evaluator Signature & Date</em><br/>
+        Department of Computer Science & Engineering
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
